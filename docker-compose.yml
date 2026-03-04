@@ -1,0 +1,14 @@
+services:
+  app:
+    build: .
+    env_file: .env
+    environment:
+      FILE_DIR: /data/input
+    volumes:
+      - ${FILE_DIR:-./samples}:/data/input:ro
+    networks:
+      - egr-network
+
+networks:
+  egr-network:
+    external: true

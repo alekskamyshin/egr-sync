@@ -1,0 +1,27 @@
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: egr
+    volumes:
+      - egr_test_db:/var/lib/postgresql/data
+      - ./scripts:/scripts:ro
+
+  app:
+    build: .
+    depends_on:
+      - db
+    environment:
+      PG_USERNAME: postgres
+      PG_PASSWORD: postgres
+      PG_HOST: db
+      PG_PORT: 5432
+      PG_DBNAME: egr
+      FILE_DIR: /data/input
+    volumes:
+      - ./samples:/data/input:ro
+
+volumes:
+  egr_test_db:
