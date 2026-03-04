@@ -45,7 +45,7 @@ For a quick local demo, set `FILE_DIR=./samples` in `.env`.
 This compose file assumes Postgres is external and already initialized.
 
 ```bash
-docker compose up --build
+make run-docker
 ```
 
 Mount your input files into `./input` on the host. The container reads them from `/data/input` via `FILE_DIR`.
